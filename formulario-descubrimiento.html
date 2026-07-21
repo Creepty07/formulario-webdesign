@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuéntame de tu proyecto</title>
+
+<!--
+====================================================================
+ Antes de enviar el link: busca "TU_WHATSAPP_AQUI" en este archivo y
+ pon tu número (52 + 10 dígitos, sin espacios ni +). Es el único dato
+ que tienes que cambiar.
+====================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --plaster:#FBF7EF; --olive:#39432B; --marigold:#E8A22B;
+    --cacao:#3A2620; --clay:#C25A3B; --line:#E4DBC9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Work Sans",system-ui,sans-serif;color:var(--cacao);
+    background:var(--plaster);line-height:1.5;-webkit-font-smoothing:antialiased;
+    padding:32px 18px 60px;
+  }
+  .wrap{max-width:560px;margin:0 auto}
+  h1{font-family:"Fraunces",serif;font-weight:600;font-size:1.8rem;margin-bottom:.3em}
+  .sub{color:#6b574c;margin-bottom:2em;font-size:.98rem}
+  fieldset{border:none;margin-bottom:1.7em}
+  label.q{display:block;font-weight:600;margin-bottom:.5em;font-size:.95rem}
+  .hint{font-weight:400;color:#8a7a6a;font-size:.85rem;display:block;margin-top:2px}
+  input[type=text], input[type=tel], textarea{
+    width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;
+    font-family:inherit;font-size:.95rem;background:#fff;color:var(--cacao);
+  }
+  input:focus, textarea:focus{outline:2px solid var(--marigold);outline-offset:1px;border-color:var(--marigold)}
+  textarea{min-height:80px;resize:vertical}
+  .opts{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--line);
+       border-radius:10px;background:#fff;cursor:pointer;font-size:.92rem}
+  .opt:has(input:checked){border-color:var(--clay);background:#fdf3ee}
+  .opt input{width:17px;height:17px;flex-shrink:0}
+  .req{color:var(--clay)}
+  .submit-btn{
+    width:100%;background:#25D366;color:#fff;border:none;padding:16px;border-radius:999px;
+    font-weight:600;font-size:1rem;cursor:pointer;display:flex;align-items:center;
+    justify-content:center;gap:10px;margin-top:.5em;
+  }
+  .submit-btn:hover{opacity:.92}
+  .submit-btn svg{width:20px;height:20px;fill:#fff}
+  .err{color:var(--clay);font-size:.85rem;margin-top:8px;display:none}
+  .foot{text-align:center;color:#a0917f;font-size:.8rem;margin-top:1.5em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Cuéntame de tu proyecto</h1>
+  <p class="sub">Con esto me hago una idea clara de lo que necesitas y te preparo una propuesta a tu medida — sin llamadas, a tu ritmo. Te toma 3 minutos.</p>
+
+  <form id="f">
+    <fieldset>
+      <label class="q">¿Cómo se llama tu negocio? <span class="req">*</span></label>
+      <input type="text" id="nombre" required>
+    </fieldset>
+
+    <fieldset>
+      <label class="q">¿A qué se dedica y a quién le vendes? <span class="req">*</span></label>
+      <textarea id="giro" required placeholder="Ej: vendo pasteles y pan artesanal, mis clientes son gente del centro y pedidos por encargo"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <label class="q">¿Qué quieres que logre tu página web?<span class="hint">Elige todas las que apliquen</span></label>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="meta" value="Que me encuentren en Google"> Que me encuentren en Google</label>
+        <label class="opt"><input type="checkbox" name="meta" value="Que me escriban directo por WhatsApp"> Que me escriban directo por WhatsApp</label>
+        <label class="opt"><input type="checkbox" name="meta" value="Vender/tomar pedidos en línea"> Vender o tomar pedidos en línea</label>
+        <label class="opt"><input type="checkbox" name="meta" value="Verme más profesional"> Verme más profesional</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <label class="q">¿Ya tienes logo, fotos o textos listos?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="material" value="Tengo casi todo listo"> Tengo casi todo listo</label>
+        <label class="opt"><input type="radio" name="material" value="Tengo algo, falta completar"> Tengo algo, falta completar</label>
+        <label class="opt"><input type="radio" name="material" value="Partimos de cero"> Partimos de cero</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <label class="q">¿Tienes redes sociales o alguna página actual?<span class="hint">Opcional — deja el link o el usuario</span></label>
+      <input type="text" id="redes" placeholder="Ej: instagram.com/minegocio">
+    </fieldset>
+
+    <fieldset>
+      <label class="q">¿Alguna página web que te guste, para tener de referencia?<span class="hint">Opcional</span></label>
+      <input type="text" id="referencia">
+    </fieldset>
+
+    <fieldset>
+      <label class="q">¿Para cuándo te gustaría tenerla lista?<span class="hint">Opcional</span></label>
+      <input type="text" id="fecha" placeholder="Ej: lo antes posible / en 2 semanas / sin prisa">
+    </fieldset>
+
+    <fieldset>
+      <label class="q">¿Tienes un rango de presupuesto en mente?<span class="hint">Opcional — si prefieres, te propongo opciones yo</span></label>
+      <input type="text" id="presupuesto" placeholder="Ej: prefiero que me propongas opciones">
+    </fieldset>
+
+    <fieldset>
+      <label class="q">¿Cuál es la mejor forma de contactarte? <span class="req">*</span></label>
+      <input type="text" id="contacto" required placeholder="Nombre y teléfono o WhatsApp">
+    </fieldset>
+
+    <button type="submit" class="submit-btn" id="submitBtn">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.94-.26-.1-.45-.15-.64.15-.19.28-.73.94-.9 1.13-.16.19-.33.21-.61.07-1.68-.84-2.78-1.5-3.89-3.4-.29-.5.29-.47.83-1.55.09-.19.05-.35-.02-.5-.08-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.35-.26.28-1 .98-1 2.4 0 1.41 1.03 2.78 1.17 2.97.14.19 2.02 3.08 4.9 4.32 1.82.78 2.53.85 3.44.72.56-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.33M12 2a10 10 0 0 0-8.6 15.06L2 22l5.05-1.32A10 10 0 1 0 12 2"/></svg>
+      Enviar mis respuestas por WhatsApp
+    </button>
+    <p class="err" id="errMsg">Falta completar los campos marcados con *</p>
+  </form>
+
+  <p class="foot">Tus respuestas se envían directo a WhatsApp — no se guardan en ningún servidor.</p>
+</div>
+
+<script>
+(function(){
+  var WHATSAPP_NUMERO = "TU_WHATSAPP_AQUI"; // <-- pon aquí tu número: 52 + 10 dígitos
+
+  document.getElementById('f').addEventListener('submit', function(e){
+    e.preventDefault();
+    var nombre = document.getElementById('nombre').value.trim();
+    var giro = document.getElementById('giro').value.trim();
+    var contacto = document.getElementById('contacto').value.trim();
+    var errEl = document.getElementById('errMsg');
+
+    if(!nombre || !giro || !contacto){
+      errEl.style.display = 'block';
+      return;
+    }
+    errEl.style.display = 'none';
+
+    var metas = Array.prototype.slice.call(document.querySelectorAll('input[name="meta"]:checked'))
+      .map(function(el){ return el.value; }).join(', ') || 'No especificó';
+    var material = (document.querySelector('input[name="material"]:checked') || {}).value || 'No especificó';
+    var redes = document.getElementById('redes').value.trim() || '—';
+    var referencia = document.getElementById('referencia').value.trim() || '—';
+    var fecha = document.getElementById('fecha').value.trim() || '—';
+    var presupuesto = document.getElementById('presupuesto').value.trim() || '—';
+
+    var msg =
+      'Hola! Aquí están mis respuestas para el proyecto de mi página web:\n\n' +
+      '*Negocio:* ' + nombre + '\n' +
+      '*A qué se dedica:* ' + giro + '\n' +
+      '*Quiero que la web logre:* ' + metas + '\n' +
+      '*Material listo:* ' + material + '\n' +
+      '*Redes/sitio actual:* ' + redes + '\n' +
+      '*Referencia que me gusta:* ' + referencia + '\n' +
+      '*Fecha deseada:* ' + fecha + '\n' +
+      '*Presupuesto:* ' + presupuesto + '\n' +
+      '*Contacto:* ' + contacto;
+
+    var url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(msg);
+    window.location.href = url;
+  });
+})();
+</script>
+</body>
+</html>
