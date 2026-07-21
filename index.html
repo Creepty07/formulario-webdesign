@@ -34,6 +34,8 @@
   fieldset{border:none;margin-bottom:1.7em}
   label.q{display:block;font-weight:600;margin-bottom:.5em;font-size:.95rem}
   .hint{font-weight:400;color:#8a7a6a;font-size:.85rem;display:block;margin-top:2px}
+  .counter{display:block;text-align:right;font-size:.78rem;color:#a0917f;margin-top:4px}
+  .counter.low{color:var(--clay)}
   input[type=text], input[type=tel], textarea{
     width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;
     font-family:inherit;font-size:.95rem;background:#fff;color:var(--cacao);
@@ -70,7 +72,8 @@
 
     <fieldset>
       <label class="q">¿A qué se dedica y a quién le vendes? <span class="req">*</span></label>
-      <textarea id="giro" required placeholder="Ej: vendo pasteles y pan artesanal, mis clientes son gente del centro y pedidos por encargo"></textarea>
+      <textarea id="giro" required maxlength="280" placeholder="Ej: vendo pasteles y pan artesanal, mis clientes son gente del centro y pedidos por encargo"></textarea>
+      <span class="counter" id="giroCounter">280 caracteres disponibles</span>
     </fieldset>
 
     <fieldset>
@@ -94,27 +97,27 @@
 
     <fieldset>
       <label class="q">¿Tienes redes sociales o alguna página actual?<span class="hint">Opcional — deja el link o el usuario</span></label>
-      <input type="text" id="redes" placeholder="Ej: instagram.com/minegocio">
+      <input type="text" id="redes" maxlength="120" placeholder="Ej: instagram.com/minegocio">
     </fieldset>
 
     <fieldset>
       <label class="q">¿Alguna página web que te guste, para tener de referencia?<span class="hint">Opcional</span></label>
-      <input type="text" id="referencia">
+      <input type="text" id="referencia" maxlength="120">
     </fieldset>
 
     <fieldset>
       <label class="q">¿Para cuándo te gustaría tenerla lista?<span class="hint">Opcional</span></label>
-      <input type="text" id="fecha" placeholder="Ej: lo antes posible / en 2 semanas / sin prisa">
+      <input type="text" id="fecha" maxlength="60" placeholder="Ej: lo antes posible / en 2 semanas / sin prisa">
     </fieldset>
 
     <fieldset>
       <label class="q">¿Tienes un rango de presupuesto en mente?<span class="hint">Opcional — si prefieres, te propongo opciones yo</span></label>
-      <input type="text" id="presupuesto" placeholder="Ej: prefiero que me propongas opciones">
+      <input type="text" id="presupuesto" maxlength="80" placeholder="Ej: prefiero que me propongas opciones">
     </fieldset>
 
     <fieldset>
       <label class="q">¿Cuál es la mejor forma de contactarte? <span class="req">*</span></label>
-      <input type="text" id="contacto" required placeholder="Nombre y teléfono o WhatsApp">
+      <input type="text" id="contacto" required maxlength="80" placeholder="Nombre y teléfono o WhatsApp">
     </fieldset>
 
     <button type="submit" class="submit-btn" id="submitBtn">
@@ -130,6 +133,15 @@
 <script>
 (function(){
   var WHATSAPP_NUMERO = "524932636103"; // <-- pon aquí tu número: 52 + 10 dígitos
+  var MAX_MENSAJE = 1200; // tope defensivo total, por debajo del límite práctico de URL
+
+  var giroEl = document.getElementById('giro');
+  var giroCounter = document.getElementById('giroCounter');
+  giroEl.addEventListener('input', function(){
+    var restantes = 280 - giroEl.value.length;
+    giroCounter.textContent = restantes + ' caracteres disponibles';
+    giroCounter.classList.toggle('low', restantes < 40);
+  });
 
   document.getElementById('f').addEventListener('submit', function(e){
     e.preventDefault();
@@ -163,6 +175,10 @@
       '*Fecha deseada:* ' + fecha + '\n' +
       '*Presupuesto:* ' + presupuesto + '\n' +
       '*Contacto:* ' + contacto;
+
+    if(msg.length > MAX_MENSAJE){
+      msg = msg.slice(0, MAX_MENSAJE) + '\n\n(mensaje recortado por longitud, te comparto el resto en el chat)';
+    }
 
     var url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(msg);
     window.location.href = url;
